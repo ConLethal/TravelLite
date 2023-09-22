@@ -1,0 +1,63 @@
+buildscript {
+    ext{
+        springBootVersion = '2.7.14'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies{
+        classpath("io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.codehaus.groovy:groovy-all:2.4.21")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group = 'com.travellite2'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+jar {
+    enabled = false
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-dependencies:2.7.14'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'org.hibernate:hibernate-core:5.6.9.Final'
+    implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
+
+    implementation 'mysql:mysql-connector-java:8.0.28'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+	testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
+
+    testRuntimeOnly('org.junit.vintage:junit-vintage-engine:5.3.1')
+}
+
+test {
+    useJUnitPlatform()
+}
